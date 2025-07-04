@@ -1,0 +1,118 @@
+# Image useful for doing development on
+
+name: simple-developer
+
+content:
+  enable_repos:
+    - devel
+  rpms:
+    - "@Development Tools"
+    # Some convenience packages
+    - bash-completion
+    - chrony
+    - audit
+    - dnf
+    - emacs-nox
+    - less
+    - strace
+    - sudo
+    - vim
+    - git
+    - wget
+    - make
+    # Dependencies to build RPMs and images
+    - rpm-build
+    - hostname
+    - openssl-devel
+    - bc
+    - binutils-devel
+    - bpftool
+    - clang
+    - dwarves
+    - gcc-plugin-devel
+    - gperf
+    - kmod-devel
+    - libcap-devel
+    - libcap-ng-devel
+    - libmnl-devel
+    - llvm
+    - meson
+    - net-tools
+    - numactl-devel
+    - openssh-clients
+    - openssh-server
+    - perl-devel
+    - python3-gobject
+    - python3-devel
+    - python3-docutils
+    - python3-jinja2
+    - rsync
+    - iputils
+    - iproute
+    - qemu-kvm
+    - fuse-devel
+    - kernel-rpm-macros
+    # Dependencies to build ostree binaries
+    - glib2-devel
+    - e2fsprogs-devel
+    - gpgme-devel
+    # Container tools
+    - podman
+    - buildah
+    - skopeo
+    # bpf tools
+    - bcc
+    - bcc-tools
+    # debugging tools
+    - sos
+  systemd:
+    enabled_services:
+      # Enable ssh daemon
+      - sshd.service
+
+  container_images:
+    - source: localhost/mem_chk_map1
+      tag: latest
+      name: localhost/mem_chk_map1
+      containers-transport: containers-storage
+    - source: localhost/mem_chk_map2
+      tag: latest
+      name: localhost/mem_chk_map2
+      containers-transport: containers-storage
+  
+  make_dirs:
+    - path: /usr/gu/_target/
+      mode: 0644
+      parents: true
+      exist_ok: true
+
+  add_files:
+    - path: /usr/gu/mem_chk_map.c
+      source_path: mem_chk_map.c
+    - path: /usr/gu/_target/libwaitinput.so
+      source_path: _target/libwaitinput.so
+
+  chmod_files:
+    - path: /usr/gu/mem_chk_map.c
+      mode: "0755"
+    - path: /usr/gu/_target/libwaitinput.so
+      mode: "0755"
+
+
+auth:
+  # "password"
+  root_password: $6$xoLqEUz0cGGJRx01$H3H/bFm0myJPULNMtbSsOFd/2BnHqHkMD92Sfxd.EKM9hXTWSmELG8cf205l6dktomuTcgKGGtGDgtvHVXSWU.
+
+  sshd_config:
+    PasswordAuthentication: true
+    PermitRootLogin: true
+
+  # Add a guest user
+  groups:
+    guest:
+      gid: 2000
+  users:
+    guest:
+      password: $6$xoLqEUz0cGGJRx01$H3H/bFm0myJPULNMtbSsOFd/2BnHqHkMD92Sfxd.EKM9hXTWSmELG8cf205l6dktomuTcgKGGtGDgtvHVXSWU.
+      uid: 2000
+      gid: 2000
