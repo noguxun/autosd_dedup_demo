@@ -40,4 +40,3 @@ clean:
 	rm -rf _target
 	podman rm -f temp-builder
 	podman rmi -f libwaitinput-builder
-	dedup_demo.$$(arch).img.qcow2

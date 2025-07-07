@@ -72,10 +72,10 @@ $ sshpass -p password ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev
 ## Run the native application
 ```
 # Build the app, linking it with the waitinput library
-$ gcc -o /root/mem_chk_map1  -D END_WORD=\"end1\" /usr/gu/mem_chk_map.c -L=/usr/gu/_target -l=waitinput
+$ gcc -o /root/mem_chk_map0  -D END_WORD=\"end0\" /usr/gu/mem_chk_map.c -L=/usr/gu/_target -l=waitinput
 
 # Run the application natively
-$ LD_LIBRARY_PATH=/usr/gu/_target /root/mem_chk_map1
+$ LD_LIBRARY_PATH=/usr/gu/_target /root/mem_chk_map0
 +-----------------------------------------+------+-----------+------------+--------------------------------+---------------------------------+
 | Memory Region                           | Perms| Dev       | Inode      | content                        | PFNs (start/mid/end)            |
 ...
@@ -87,7 +87,7 @@ Type 'end1' to exit:
 ## Run the application in a container
 ```
 # Run container image1
-$ sudo podman run --rm -it --privileged mem_chk_map1
+$ podman run --rm -it --privileged mem_chk_map1
 ...
 | 0x00007fa2098b6000 - 0x00007fa2098b7000 | r-xp | fe:03     | 303709     | /app/libwaitinput.so           | 0x7c875 / 0x7c875 / 0x7c875     |
 ...
