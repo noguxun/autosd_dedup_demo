@@ -3,11 +3,16 @@
 name: simple-developer
 
 content:
+  repos:
+    - id: epel
+      baseurl: https://dl.fedoraproject.org/pub/epel/9/Everything/$arch/
+
   rpms:
     - gcc
     - make
     - podman
     - openssh-server
+    - fsverity-utils
   
   systemd:
     enabled_services:
