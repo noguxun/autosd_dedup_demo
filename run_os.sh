@@ -1,1 +1,0 @@
-automotive-image-runner --nographics simple-developer.$(arch).img.qcow2
