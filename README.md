@@ -81,7 +81,7 @@ $ LD_LIBRARY_PATH=/usr/gu/_target /root/mem_chk_map0
 ...
 | 0x00007f2150b73000 - 0x00007f2150b74000 | r-xp | fe:03     | 303709     | .../gu/_target/libwaitinput.so | 0x7c875 / 0x7c875 / 0x7c875     |
 ...
-Type 'end1' to exit:
+Type 'end0' to exit:
 ```
 
 ## Run the application in a container
